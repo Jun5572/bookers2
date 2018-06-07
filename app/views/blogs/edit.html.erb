@@ -1,0 +1,22 @@
+<h1>Editing Book</h1>
+
+<div class="form-position">
+	<%= form_for(@blog) do |f| %>
+		<p><b>Title</b></p>
+		<%= f.text_field :title, class: "book_title" %>
+
+		<p><b>Body</b></p>
+		<%= f.text_area :body, class: "book_body" %>
+
+		<%= f.submit 'Update Book' %>
+	<% end %>
+</div>
+<p>
+<span class="edit" >
+	<%= link_to "Show", blog_path(@blog.id), "data-confirm" => "このまま移動すると編集した内容は保存されません。よろしいですか?" %>
+</span>
+<span> | </span>
+<span class="show-back">
+	<%= link_to "Back to Books", blogs_path, "data-confirm" => "このまま移動すると編集した内容は保存されません。よろしいですか?" %>
+</span>
+</p>

@@ -1,0 +1,53 @@
+<% if flash[:notice] %>
+	<p class="succes-destroy"><b><%= flash[:notice] %></b></p>
+<% end %>
+
+<!-- 投稿一覧の表示と横に詳細、編集、削除機能のリンク -->
+
+<h1>Books</h1>
+<table class="table">
+	<tr>
+		<th>Title</th>
+		<th>Body</th>
+		<th></th>
+	</tr>
+
+	<% @blogs.each do |blog| %>
+	<tr>
+		<td><%= blog.title %></td>
+		<td><%= blog.body %></td>
+		<!-- 詳細一覧リンク -->
+		<td><%= link_to "Show", blog_path(blog.id), class:"show_#{blog.id}" %></td>
+		<!-- 編集リンク -->
+		<td><%= link_to "Edit", edit_blog_path(blog.id), class:"edit_#{blog.id}" %></td>
+		<!-- 削除リンク -->
+		<td><%= link_to "Destroy", blog_path(blog.id), method: :delete, "data-confirm" => "削除します。本当によろしいですか?" %></td>
+	</tr>
+	<% end %>
+</table>
+
+<!-- 新規投稿フォームの表示 -->
+
+<h2>----Add New book----</h2>
+<div class ="form-position">
+	<%= form_for(@blog) do |f| %>
+		 <% if @blog.errors.any? %>
+		 	<h4 class="error-title">!入力した内容にエラーが<%= @blog.errors.count %>件あります!</h4>
+		 	<ul>
+				<% @blog.errors.full_messages.each do |message|%>
+				 		<li class="error-info"><%= message %></li>
+				<% end %>
+		 	</ul>
+	<% end %>
+
+<p><b>Title</b></p>
+<%= f.text_field :title, class:"book_title" %>
+
+<p><b>Body</b></p>
+<%= f.text_area :body, class:"book_body" %>
+
+<%= f.submit 'Create Book' %>
+</div>
+
+
+<% end %>

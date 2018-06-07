@@ -1,0 +1,24 @@
+<% if flash[:notice] %>
+	<p class="succes-message"><b><%= flash[:notice] %></b></p>
+<% end %>
+
+
+<h1>Book Information</h1>
+
+<p class ="info-table">
+	<b>Title: </b><%= @blog.title %>
+</p>
+<p class ="info-table">
+	<b>Body: </b><%= @blog.body %>
+</p>
+
+<p>
+	<span class="edit">
+		<%= link_to "Edit", edit_blog_path(@blog.id) %>
+	</span>
+	<span>|</span>
+	<span class="show-back">
+		<%= link_to "Back to Books", blogs_path %>
+	</span>
+</p>
+
