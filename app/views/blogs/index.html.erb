@@ -21,7 +21,7 @@
 		<!-- 編集リンク -->
 		<td><%= link_to "Edit", edit_blog_path(blog.id), class:"edit_#{blog.id}" %></td>
 		<!-- 削除リンク -->
-		<td><%= link_to "Destroy", blog_path(blog.id), method: :delete, "data-confirm" => "削除します。本当によろしいですか?" %></td>
+		<td><%= link_to "Destroy", blog_path(blog.id), class:"destroy_#{blog.id}", method: :delete, "data-confirm" => "削除します。本当によろしいですか?" %></td>
 	</tr>
 	<% end %>
 </table>

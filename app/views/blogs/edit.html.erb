@@ -12,11 +12,11 @@
 	<% end %>
 </div>
 <p>
-<span class="edit" >
-	<%= link_to "Show", blog_path(@blog.id), "data-confirm" => "このまま移動すると編集した内容は保存されません。よろしいですか?" %>
-</span>
-<span> | </span>
-<span class="show-back">
-	<%= link_to "Back to Books", blogs_path, "data-confirm" => "このまま移動すると編集した内容は保存されません。よろしいですか?" %>
-</span>
+	<span class="edit" >
+		<%= link_to "Show", blog_path(@blog.id), "data-confirm" => "このまま移動すると編集した内容は保存されません。よろしいですか?" %>
+	</span>
+	<span> | </span>
+	<span class="back">
+		<%= link_to "Back to Books", blogs_path, "data-confirm" => "このまま移動すると編集した内容は保存されません。よろしいですか?" %>
+	</span>
 </p>
