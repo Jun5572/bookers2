@@ -1,0 +1,60 @@
+<p class="text-shadow" align="right">
+	<font color="#ff9d4d">
+		<span class="glyphicon glyphicon-user" aria-hidden="true"></span>Logged in <%= current_user.name %>
+	</font>
+</p>
+<section class="user-info">
+	<h2><b>User Info</b></h2>
+	<div class= "profile-image">
+		<!-- ログインしているユーザーの画像を表示。画像が登録されていない場合は特定の画像を表示 -->
+		<%= attachment_image_tag user, :image ,:fill, 100, 100, fallback: 'no_image_icon.png', :size => "100x100" %>
+	</div>
+	<table class="table">
+		<div>
+			<tr>
+				<th><b>Name</b></th>
+				<th><%= user.name %></th>
+			</tr>
+		</div>
+		<div>
+			<tr>
+				<th><b>Introduction</b></th>
+				<th><%= user.introduction %></th>
+			</tr>
+		</div>
+	</table>
+	<% if @user.id == current_user.id %>
+		<%= link_to edit_user_path(current_user.id) do %>
+			<button type="button" class="btn btn-default btn-block ">
+				<span class="glyphicon glyphicon-wrench" aria-hidden="true">Profile</span>
+			</button>
+		<% end %>
+	<% end %>
+	<!-- 新規投稿フォームの表示 -->
+	<div class="margin-top">
+		<h2>New book</h2>
+	</div>
+	<% if flash[:remain] %>
+		<p class="remain"><font color="red"><%= flash[:remain] %><br><%= flash[:remain2] %></font></p>
+	<% end %>
+
+	<%= form_for blog,url: '/blogs', method: :post do |f| %>
+		<% if blog.errors.any? %>
+	 		<h4 class="error-title">!入力した内容にエラーが<%= blog.errors.count %>件あります!</h4>
+		 	<ul>
+				<% blog.errors.full_messages.each do |message|%>
+				 <li class="error-info"><%= message %></li>
+				<% end %>
+			</ul>
+		<% end %>
+		<p><b>Title</b></p>
+			<p><%= f.text_field :title, :placeholder => "enter book title...", :size => "36" %></p>
+
+		<p><b>Opinion</b></p>
+			<%= f.text_area :body, :placeholder => "enter your opinion...", :size => "35" %>
+
+		<button type="submit" class="btn btn-primary btn-block">
+			<span class="glyphicon glyphicon-pencil" aria-hidden="true"> </span>Create Book
+		</button>
+	<% end %>
+</section>

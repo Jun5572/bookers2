@@ -1,24 +1,52 @@
-<% if flash[:notice] %>
-	<p class="succes-message"><b><%= flash[:notice] %></b></p>
-<% end %>
 
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-3">
+				<%= render 'blogs/list', user: @user, blog: @blog %>
+			</div>
 
-<h1>Book Information</h1>
+			<div class="col-lg-9">
+				<h2><b>Book Detail</b></h2>
+				<% if flash[:notice] %>
+					<span class="succes-message">
+						<font size="5" color="green" class="text-shadow">
+							<b><%= flash[:notice] %></b>
+						</font>
+					</span>
+				<% end %>
+				<table class="table">
+					<tbody>
+						<tr>
+							<td>
+								<%= link_to user_path(@user) do %>
+									<%= attachment_image_tag @user, :image ,:fill, 40, 40, fallback: 'no_image_icon.png', :size => "40x40"%><br>
+									<% @user.name %>
+								<% end %>
+							</td>
+							<td><%=link_to @blog.title, blog_path(@blog) %></td>
+							<td><%= @blog.body %></td>
+							<td>
+								<% if @user.id == current_user.id  %>
+									<%= link_to edit_blog_path(@blog) do %>
+										<button type="button" class="btn btn-success btn-xs">
+											<span> Edit </span>
+										</button>
+									<% end %>
+							</td>
+							<td>
+									<%= link_to blog_path(@blog),method: :delete, data:{ confirm: "Destroy'<strong>#{@blog.title}</strong>'. Are you sure？", cancel: "Cancel", commit: "OK"}, title: "Book destroy" do %>
+										<button type="button" class="btn btn-danger btn-xs">
+										</style>
+										<span>Destory</span>
+										</button>
+									<% end %>
+								<% end %>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
 
-<p class ="info-table">
-	<b>Title: </b><%= @blog.title %>
-</p>
-<p class ="info-table">
-	<b>Body: </b><%= @blog.body %>
-</p>
-
-<p>
-	<span class="edit">
-		<%= link_to "Edit", edit_blog_path(@blog.id) %>
-	</span>
-	<span>|</span>
-	<span class="show-back">
-		<%= link_to "Back to Books", blogs_path %>
-	</span>
-</p>
 

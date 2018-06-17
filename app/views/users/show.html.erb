@@ -1,0 +1,52 @@
+<!-- ログインした状態のHOMEボタン押した時のリンク先のページ -->
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3">
+					<!-- 下記、部分伝プレート呼び出しの記述 -->
+					<%= render 'blogs/list', user: @user, blog: @blog %>
+				</div>
+				<div class="col-lg-9">
+					<h2><b>Books</b></h2>
+						<% if flash[:notice] %>
+							<p class="succes-destroy">
+								<font size="4">
+									<p class="text-shadow"><font color= "green"><%= flash[:notice] %></font></p>
+									<div>Hello, <%= @user.name %> ;)</div>
+								</font>
+							</p>
+						<% elsif flash[:destroy] %>
+							<p class="succes-destroy">
+								<font size="4">
+									<p class="text-shadow"><font color= "red"><%= flash[:destroy] %></font></p>
+								</font>
+							</p>
+						<% else %>
+						<% end %>
+					<section class="main-box">
+						<table class="table table-hover table-inverse">
+							<thead>
+								<tr>
+									<th></th>
+									<th>Title</th>
+									<th>Opinion</th>
+									<th colspan="3"></th>
+								</tr>
+							</thead>
+							<tbody>
+								<% @user.blogs.each do |blog| %>
+									<tr>
+										<td>
+											<span class="user-image">
+												<%= attachment_image_tag @user, :image ,:fill, 40, 40, fallback: 'no_image_icon.png', :size => "40x40" %>
+											</span>
+										</td>
+										<td><%=link_to blog.title, blog_path(blog) %></td>
+										<td><%= blog.body %></td>
+									</tr>
+								<% end %>
+							</tbody>
+						</table>
+					</section>
+				</div>
+			</div>
+		</div>

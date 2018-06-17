@@ -1,0 +1,22 @@
+<body>
+	<h2><b>User info</b></h2>
+		<section class="user-edit">
+			<%= form_for(@user) do |f| %>
+				<div>
+					<span><b>Name</b></span>
+					<%= f.text_field :name %>
+				</div>
+				<div>
+					<b>Image</b>
+					<%= f.attachment_field :image %>
+				</div>
+				<div>
+					<span><b>Introduction</b></span>
+					<%= f.text_area :introduction, :maxlength => "50", placeholder: "50 character limit" %>
+				</div>
+				<div>
+					<button type="submit" class="btn btn-info btn-xm"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Update User</button>
+				</div>
+			<% end %>
+	</section>
+</body>

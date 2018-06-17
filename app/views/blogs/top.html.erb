@@ -1,7 +1,30 @@
-<h1>Welcome to Bookers！</h1>
-<p class="about-bookers">
-	<b>Bookers</b>では、さまざまな書籍に関するあなたの意見や<br>
-	印象を共有し交換することができます！
-</p>
+<body>
+	<div class="toppage-margin">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6 col-lg-offset-3">
+					<h1 align="center"><b>Welcome to <span class="navbar-title2"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Bookers</span></b></h1>
 
- <p class="start"><b><%= link_to "START!", blogs_path %></b></p>
+						<div class="wellcome-text">
+							<p>In<span class="glyphicon glyphicon-book" aria-hidden="true"></span> Bookers,</p>
+							<p>you can share and exchange your opinions , inpressions , and emotions</p>
+							<p>about varioius books! Let's enjoy <span class="glyphicon glyphicon-book" aria-hidden="true"></span>Bookers life!!</p>
+						</div>
+
+						<div class="bottons-box">
+							<div class="start-buttons">
+								<%= link_to new_user_registration_path, class: 'btn btn-success btn-block' do %>
+									<div class="glyphicon glyphicon-pencil" aria-hidden="true"></div> Sign Up
+								<% end %>
+							</div>
+							<div class="start-buttons bottom-margin">
+								<%= link_to new_user_session_path, class: 'btn btn-primary btn-block' do %>
+									<div class="glyphicon glyphicon-log-in" aria-hidden="true"></div> Log In
+								<% end %>
+							</div>
+						</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>

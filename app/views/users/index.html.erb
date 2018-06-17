@@ -1,0 +1,39 @@
+<div class="container">
+	<div class="row">
+		<div class="col-lg-3">
+<!-- 下記、部分テンプレート呼び出し -->
+		<%= render 'blogs/list', user: @user, blog: @blog %>
+<!-- このアプリを使用しているユーザーを表示 -->
+		</div>
+		
+		<div class="col-lg-9">
+			<h2><b>Users</b></h2>
+			<section class="main-box">
+				<table class="table table-hover table-inverse">
+					<thead>
+						<tr>
+							<th>Image</th>
+							<th>Name</th>
+							<th></th>
+							<th colspan="3"></th>
+						</tr>
+					</thead>
+					<tbody>
+						<% @users.each do |user| %>
+							<tr>
+								<td>
+									<span>
+										<%= attachment_image_tag user, :image ,:fill, 50, 50, fallback: 'no_image_icon.png', :size => "40x40" %>
+									</span>
+								</td>
+								<td><%= user.name %></td>
+								<!-- 詳細一覧リンク -->
+								<td><%= link_to "Show", user_path(user) %></td>
+							</tr>
+						<% end %>
+					</tbody>
+				</table>
+			</section>
+		</div>
+	</div>
+</div>

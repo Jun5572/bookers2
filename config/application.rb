@@ -15,5 +15,15 @@ module Bookers
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
-  end
+    private
+
+	    def after_sign_in_path_for(resource_or_scope)
+		   user_path
+	  	end
+
+
+	   	def after_sign_out_path_for(resource_or_scope)
+	      top_path
+	    end
+  	end
 end

@@ -1,0 +1,36 @@
+<section class="margin-left">
+  <h2>Sign up</h2>
+  <!-- <div class="error-message-color"> -->
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= devise_error_messages! %>
+  <!-- </div> -->
+    <!-- ここに新規登録の際に必要な項目を入れる -->
+    <div class="field">
+      <%= f.label :name %><br />
+      <%= f.text_field :name, autofocus: true, autocomplete: "off" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :email %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "off" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :password %>
+      <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %> characters minimum)</em>
+      <% end %><br />
+      <%= f.password_field :password, autocomplete: "off" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :password_confirmation %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "off" %>
+    </div>
+    <div class="sign-up-botton-top-margin">
+      <p><%= f.submit "Sign up", class:"btn btn-success btn-lg  btn-base-1 btn-sm" %></p>
+    </div>
+  <% end %>
+
+  <%= render "devise/shared/links" %>
+</section>
