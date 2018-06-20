@@ -1,3 +1,4 @@
+<!-- git -->
 <p class="text-shadow" align="right">
 	<font color="#ff9d4d">
 		<span class="glyphicon glyphicon-user" aria-hidden="true"></span>Logged in <%= current_user.name %>
@@ -47,7 +48,7 @@
 		<% if blog.errors.any? %>
 	 		<h4 class="error-title">!入力した内容にエラーが<%= blog.errors.count %>件あります!</h4>
 		 	<ul>
-				<% blog.errors.full_messages.each do |message|%>
+				<%blog.errors.full_messages.each do |message|%>
 				 <li class="error-info"><%= message %></li>
 				<% end %>
 			</ul>
