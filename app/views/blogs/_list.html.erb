@@ -23,6 +23,11 @@
 			</tr>
 		</div>
 	</table>
+	<% if flash[:update] %>
+		<font size="4">
+			<p class="text-shadow"><font color= "#66cdaa"><%= flash[:update] %></font></p>
+		</font>
+	<% end %>
 	<% if @user.id == current_user.id %>
 		<%= link_to edit_user_path(current_user.id) do %>
 			<button type="button" class="btn btn-default btn-block ">
