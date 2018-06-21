@@ -14,18 +14,19 @@
 						</font>
 					</span>
 				<% end %>
+			<section class="main-box">
 				<table class="table">
 					<tbody>
 						<tr>
-							<td>
+							<td class="td_vertical_align_middle">
 								<%= link_to user_path(@user) do %>
-									<%= attachment_image_tag @user, :image ,:fill, 40, 40, fallback: 'no_image_icon.png', :size => "40x40"%><br>
+									<%= attachment_image_tag @user, :image ,:fill, 100, 100, fallback: 'no_image_icon.png', :size => "100x100"%><br>
 									<% @user.name %>
 								<% end %>
 							</td>
-							<td><%=link_to @blog.title, blog_path(@blog) %></td>
-							<td><%= @blog.body %></td>
-							<td>
+							<td class="td_vertical_align_middle"><%=link_to @blog.title, blog_path(@blog) %></td>
+							<td class="td_vertical_align_middle"><%= @blog.body %></td>
+							<td class="td_vertical_align_middle">
 								<% if @user.id == current_user.id  %>
 									<%= link_to edit_blog_path(@blog) do %>
 										<button type="button" class="btn btn-success btn-xs">
@@ -33,7 +34,7 @@
 										</button>
 									<% end %>
 							</td>
-							<td>
+							<td class="td_vertical_align_middle">
 									<%= link_to blog_path(@blog),method: :delete, data:{ confirm: "Destroy'<strong>#{@blog.title}</strong>'. Are you sure？", cancel: "Cancel", commit: "OK"}, title: "Book destroy" do %>
 										<button type="button" class="btn btn-danger btn-xs">
 										</style>
@@ -45,6 +46,39 @@
 						</tr>
 					</tbody>
 				</table>
+				<!-- いいね機能の追加 -->
+				<% if @blog.favorited_by?(current_user) %>
+				    	<%= link_to blog_favorites_path(@blog), method: :delete do %>
+				    		<i class="fa fa-heart fa-lg" aria-hidden="true" style="color: #dc143c"></i>
+				    		<%= @blog.favorites.count %> いいね
+				    	<% end %>
+				<% else %>
+				    	<%= link_to blog_favorites_path(@blog), method: :post do %>
+				      		<i class="fa fa-heart fa-lg" aria-hidden="true" style="color: #e6e6fa"></i>
+				      		<%= @blog.favorites.count %> いいね
+				    	<% end %>
+				<% end %>
+				<!-- イイね機能ここまで -->
+			</section>
+			<section>
+				<!-- ここからコメント投稿・閲覧機能 -->
+			<h2>Comments</h2>
+				<thead>
+					<tr>
+						<td>user_name</td>
+						<td>body</td>
+					</tr>
+				</thead>
+				<li>
+  					<i class="fa fa-comment"></i>
+  					<a><%= @blog.post_comments.count %></a>
+				</li>
+				<div class="comment-list bt style-2" id="comments">
+    				<div class="float-wrapper">
+        			<h2 class="comment-count"><%= @blog.post_comments.count %>件コメント</h2>
+    			</div>
+
+			</section>
 			</div>
 		</div>
 	</div>

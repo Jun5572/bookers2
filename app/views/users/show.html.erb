@@ -35,13 +35,26 @@
 							<tbody>
 								<% @user.blogs.each do |blog| %>
 									<tr>
-										<td>
+										<td class="td_vertical_align_middle">
 											<span class="user-image">
 												<%= attachment_image_tag @user, :image ,:fill, 40, 40, fallback: 'no_image_icon.png', :size => "40x40" %>
+								<!-- いいね機能の記述の追加ここから -->
+												<% if blog.favorited_by?(current_user) %>
+											    	<%= link_to blog_favorites2_path(blog), method: :delete do %>
+											    		<i class="fa fa-heart fa-lg" aria-hidden="true" style="color: #dc143c"></i>
+											    	<% end %>
+											    	<%= blog.favorites.count %>
+												<% else %>
+											    	<%= link_to blog_favorites2_path(blog), method: :post do %>
+											      		<i class="fa fa-heart fa-lg" aria-hidden="true" style="color: silver"></i>
+											      	<% end %>
+											      	<%= blog.favorites.count %>
+												<% end %>
+								<!-- イイね機能の記述ここまで -->
 											</span>
 										</td>
-										<td><%=link_to blog.title, blog_path(blog) %></td>
-										<td><%= blog.body %></td>
+										<td class="td_vertical_align_middle"><%=link_to blog.title, blog_path(blog) %></td>
+										<td class="td_vertical_align_middle"><%= blog.body %></td>
 									</tr>
 								<% end %>
 							</tbody>

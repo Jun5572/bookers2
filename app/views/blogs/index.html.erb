@@ -1,4 +1,8 @@
-
+<!-- ↓↓↓下記２行、swiperの実装準備↓↓↓ -->
+<link rel="stylesheet" href="./css/swiper.min.css">
+<script src="./js/swiper.min.js"></script>
+		<!-- ↑↑↑swiper↑↑↑ -->
+		
 <div class="container">
 	<div class="row">
 		<div class="col-lg-3">
@@ -28,13 +32,13 @@
 					<tbody>
 						<% @blogs.each do |blog| %>
 							<tr>
-								<td>
+								<td class="td_vertical_align_middle">
 									<%= link_to user_path(blog.user) do %>
 										<%= attachment_image_tag blog.user, :image, :fill, 40, 40, fallback: 'no_image_icon.png', :size => "40x40" %>
 									<% end %>
 								</td>
-								<td><%= link_to blog.title, blog_path(blog) %></td>
-								<td><%= blog.body %></td>
+								<td class="td_vertical_align_middle"><%= link_to blog.title, blog_path(blog) %></td>
+								<td class="td_vertical_align_middle"><%= blog.body %></td>
 							</tr>
 						<% end %>
 					</tbody>
