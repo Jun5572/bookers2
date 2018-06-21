@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
 
   before_action :correct_user, only: [:edit, :update]
+  # acts_as_followable # フォロワー機能
+  # acts_as_follower   # フォロー機能
 
 	# アプリ利用ユーザー一覧[Users]
   def index
@@ -28,7 +30,20 @@ class UsersController < ApplicationController
     @blog = Blog.new
   end
 
+  # イイね機能のcreate,destroyアクションの記述
+  def create_favorite
+    blog = Blog.find(params[:blog_id])
+    favorite = current_user.favorites.new(blog_id: blog.id)
+    favorite.save
+    redirect_to user_path(blog.user)
+  end
 
+  def destroy_favorite
+    blog = Blog.find(params[:blog_id])
+    favorite = current_user.favorites.find_by(blog_id: params[:blog_id])
+    favorite.destroy
+    redirect_to user_path(blog.user)
+  end
 
       private
 

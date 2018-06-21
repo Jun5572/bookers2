@@ -5,3 +5,56 @@
 .hello-name{
 	text-align: right;
 }
+.sample02 .swiper-wrapper {
+  align-items: stretch;
+}
+
+.sample02 .swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  padding-bottom: 25px;
+}
+
+.sample02 .sample02-inner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.sample02 .swiper-button-prev,
+.sample02 .swiper-button-next {
+  display: none;
+  width: 20px;
+  height: 32.58px;
+  fill: #666;
+  stroke: none;
+  stroke-width: 0;
+  background-image: none;
+  z-index: 10000;
+}
+
+.sample02 .swiper-container-horizontal > .swiper-pagination-bullets {
+  bottom: 0;
+}
+
+.sample02 .swiper-pagination-bullet-active {
+  background: #666;
+}
+
+@media (min-width: 768px) {
+  .sample02 .swiper-slide {
+    padding: 50px;
+  }
+
+  .sample02 .swiper-button-prev,
+  .sample02 .swiper-button-next {
+    display: block;
+  }
+
+  .sample02 .swiper-container-horizontal > .swiper-pagination-bullets {
+    bottom: 10px;
+  }
+}
