@@ -7,7 +7,7 @@
     <!-- ここに新規登録の際に必要な項目を入れる -->
     <div class="field">
       <%= f.label :name %><br />
-      <%= f.text_field :name, autofocus: true, autocomplete: "off" %>
+      <%= f.text_field :name, autofocus: true, :minlength =>"2", autocomplete: "off" %>
     </div>
 
     <div class="field">
