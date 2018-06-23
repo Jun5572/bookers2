@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-
+  before_action :authenticate_user!, except: [:show]
+  before_action :authenuser, only: [:show]
   before_action :correct_user, only: [:edit, :update]
   # acts_as_followable # フォロワー機能
   # acts_as_follower   # フォロー機能
@@ -25,9 +26,14 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
-    @blogs = @user.blogs
-    @blog = Blog.new
+    if User.exists?(id: params[:id])
+      @user = User.find(params[:id])
+      @blogs = @user.blogs
+      @blog = Blog.new
+    else
+      flash[:notice] = "NOT exist user!"
+      redirect_to users_path
+    end
   end
 
   # イイね機能のcreate,destroyアクションの記述

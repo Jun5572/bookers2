@@ -6,7 +6,10 @@ class ApplicationController < ActionController::Base
     user_path(current_user.id) # ログイン後に遷移するpathを設定
   	end
 
-
+# URL直接入力したときの遷移先設定
+  	def authenuser
+  		redirect_to top_path unless user_signed_in?
+  	end
 
 	protected
 
@@ -16,4 +19,6 @@ class ApplicationController < ActionController::Base
 		devise_parameter_sanitizer.permit(:sign_in, keys: [:name])
     	devise_parameter_sanitizer.permit(:account_update, keys: [:name])
   	end
+
+
 end

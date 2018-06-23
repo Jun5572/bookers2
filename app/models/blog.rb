@@ -1,6 +1,6 @@
 class Blog < ApplicationRecord
 	validates :title, presence: true
-	validates :body, presence: true
+	validates :body, length: {maximum: 200}, presence: true
 
 
 	# Userモデルに対して1:Nの関係を記述[user: 1 blog: N]

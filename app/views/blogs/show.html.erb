@@ -2,7 +2,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-3">
-				<%= render 'blogs/list', user: @user, blog: @blog %>
+				<%= render 'blogs/list', user: @user, blog: @blog_new %>
 			</div>
 
 			<div class="col-lg-9">
@@ -62,7 +62,7 @@
 			</section>
 			<section>
 				<!-- ここからコメント投稿・閲覧機能 -->
-			<h2>Comments</h2>
+			<!-- <h2>Comments機能開発中</h2>
 				<thead>
 					<tr>
 						<td>user_name</td>
@@ -76,7 +76,7 @@
 				<div class="comment-list bt style-2" id="comments">
     				<div class="float-wrapper">
         			<h2 class="comment-count"><%= @blog.post_comments.count %>件コメント</h2>
-    			</div>
+    			</div> -->
 
 			</section>
 			</div>

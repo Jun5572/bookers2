@@ -31,3 +31,12 @@ window.addEventListener('DOMContentLoaded', function() {
     effect: 'coverflow'
   });
 }, false);
+
+
+
+
+
+
+
+
+

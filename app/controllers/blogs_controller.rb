@@ -1,5 +1,7 @@
 class BlogsController < ApplicationController
-  before_action :authenticate_user!, except: :top
+  before_action :authenticate_user!, except: [:top, :show]
+  before_action :authenuser, only: [:show]
+
 
   def top
   end
@@ -11,8 +13,15 @@ class BlogsController < ApplicationController
   end
 
   def show
-  	@blog = Blog.find(params[:id])
-    @user = @blog.user
+    @blog_new = Blog.new
+    if Blog.exists?(id: params[:id])
+      @blog = Blog.find(params[:id])
+      @user = @blog.user
+    elsif 
+      flash[:notice] = "NOT exist book!"
+      redirect_to blogs_path
+    end
+  	
   end
 
   def create
