@@ -1,6 +1,6 @@
 class BlogsController < ApplicationController
   before_action :authenticate_user!, except: [:top, :show]
-  before_action :authenuser, only: [:show]
+  # before_action :authenuser, only: [:show]
 
 
   def top
@@ -43,6 +43,10 @@ class BlogsController < ApplicationController
 
   def edit
   	@blog = Blog.find(params[:id])
+    if @blog.user != current_user
+        flash[:notice2] = "not accepted!"
+        redirect_to users_path
+    end
   end
 
   def update

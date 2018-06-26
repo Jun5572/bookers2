@@ -13,6 +13,9 @@
 			<section class="main-box">
 					<% if flash[:notice] %>
 						<p class="text-shadow" align="center"><font size="3" color= "red"><%= flash[:notice] %></font></p>
+					<% elsif flash[:notice2] %>
+						<p class="text-shadow" align="center"><font size="3" color= "red"><%= flash[:notice2] %></font></p>
+					<% else %>
 					<% end %>
 				<table class="table table-hover table-inverse">
 					<thead>
