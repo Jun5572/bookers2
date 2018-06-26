@@ -68,3 +68,4 @@ gem "refile-mini_magick"
 gem 'data-confirm-modal'
 # フォロー、フォロワー機能追加のためのgemファイル
 gem "acts_as_follower", github: "tcocca/acts_as_follower"
+gem "pry-rails"
