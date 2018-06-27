@@ -1,7 +1,7 @@
 class FavoritesController < ApplicationController
 
 # Ajax対応のアクション記述
-# before_action :set_variables
+ before_action :set_variables
 # ===============================以下削除厳禁=================================
   # def create
   # 	blog = Blog.find(params[:blog_id])
@@ -19,20 +19,22 @@ class FavoritesController < ApplicationController
 # ==========================================================================
 
 def create
-  # favorite = current_user.favorites.new(blog_id: @blog.id)
-  # favorite.save
-  @favorite = Favorite.create(user_id: current_user.id, blog_id: params[:blog_id])
+
+  favorite = Favorite.new(blog_id: @blog.id, user_id: current_user.id)
+ 
+  favorite.save
+  # @favorite = Favorite.create(user_id: current_user.id, blog_id: params[:blog_id])
   @favorites = Favorite.where(blog_id: params[:blog_id])
-  @blogs = Blog.all
+  # @blogs = Blog.all
 end
 
 def destroy
-  # favorite = current_user.favorites.find_by(blog_id: @blog.id)
-  # favorite.destroy
-  favorite = Favorite.find_by(user_id: current_user.id, blog_id: params[:blog_id])
+  favorite = Favorite.find_by(blog_id: @blog.id, user_id: current_user.id)
   favorite.destroy
+  # favorite = Favorite.find_by(user_id: current_user.id, blog_id: params[:blog_id])
+  # favorite.destroy
   @favorites = Favorite.where(blog_id: params[:blog_id])
-  @blogs = Blog.all
+  # @blogs = Blog.all
 end
 
 # ================================以下削除厳禁======================================
@@ -66,10 +68,10 @@ end
 #   end
 
 # --------------------------------------------------------------------
-  # private
-  # def set_variables
-  #   @blog = Blog.find(params[:blog_id])
+   private
+   def set_variables
+     @blog = Blog.find(params[:blog_id])
   #   @id_name = "#favorite-link-#{@blog.id}"
   #   @id_heart = "#heart-#{@blog.id}"
-  # end
+   end
 end

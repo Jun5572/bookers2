@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!, except: [:show]
-  before_action :authenuser, only: [:show]
-  before_action :correct_user, only: [:edit, :update]
+  before_action :authenticate_user!
+  # before_action :authenuser, only: [:show]
+  # before_action :correct_user, only: [:edit, :update]
   # acts_as_followable # フォロワー機能
   # acts_as_follower   # フォロー機能
 
@@ -16,6 +16,10 @@ class UsersController < ApplicationController
   # マイプロフィール編集
   def edit
     @user = User.find(params[:id])
+    if @user.id != current_user
+      flash[:notice2] = "not accepted!"
+      redirect_to users_path
+    end
   end
   # データ更新
   def update
@@ -58,10 +62,5 @@ class UsersController < ApplicationController
       end
 
       # URL直接入力しても他人の編集ページにリンクできなくしている記述
-      def correct_user
-        @user = User.find(params[:id])
-        if @user != current_user
-          redirect_to(root_path)
-        end
-      end
+     
 end

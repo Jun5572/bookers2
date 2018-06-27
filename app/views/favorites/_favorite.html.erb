@@ -1,16 +1,16 @@
 <% if user_signed_in? %>
   <% if blog.favorite_user(current_user.id) %>
-    <%= button_to blog_favorites_path(blog_id: blog.id), method: :delete, id: "favorite-buttons#{@blog.id}", remote: true do %>
+    <%= button_to blog_favorites_path(blog_id: blog.id), method: :delete, id: "favorite-buttons#{blog.id}", remote: true do %>
       <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
       <span>
-        <%= blog.favorites_count %>
+        <%= blog.favorites.count %>
       </span>
     <% end %>
   <% else %>
-    <%= button_to blog_favorites_path(blog_id: blog.id), id: "favorite-buttons#{blog.id}", methid: :create, remote: true do %>
+    <%= button_to blog_favorites_path(blog_id: blog.id), id: "favorite-buttons#{blog.id}", method: :create, remote: true do %>
       <span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>
       <span>
-        <%= blog.favorites_count %>
+        <%= blog.favorites.count %>
       </span>
     <% end %>
   <% end %>

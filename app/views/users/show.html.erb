@@ -20,6 +20,12 @@
 									<p class="text-shadow"><font color= "red"><%= flash[:destroy] %></font></p>
 								</font>
 							</p>
+						<% elsif flash[:notice2]%>
+							<p class="succes-destroy">
+								<font size="4">
+									<p class="text-shadow"><font color= "red"><%= flash[:notice2] %></font></p>
+								</font>
+							</p>
 						<% else %>
 						<% end %>
 					<section class="main-box">
@@ -40,7 +46,7 @@
 												<%= attachment_image_tag @user, :image ,:fill, 40, 40, fallback: 'no_image_icon.png', :size => "40x40" %>
 								<!-- いいね機能の記述の追加ここから -->
 								<!-- Ajax適応の為一旦カット。メモにはりつけてある。 -->
-												<%= render 'favorites/favorite', blog: blog %>
+												<%= render 'favorites/favorite',  blog: blog,favorites: blog.favorites %>
 								<!-- イイね機能の記述ここまで -->
 											</span>
 										</td>
