@@ -16,7 +16,7 @@ class UsersController < ApplicationController
   # マイプロフィール編集
   def edit
     @user = User.find(params[:id])
-    if @user.id != current_user
+    if @user.id != current_user.id
        flash[:notice2] = "not accepted!"
        redirect_to users_path
     end
